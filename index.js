@@ -1,9 +1,9 @@
-function atualizar_qtd(){
-    document.getElementById('numeros').innerHTML = '('+lista_tarefas.length+')'
-}
+// function atualizar_qtd(){
+//     document.getElementById('numeros').innerHTML = '('+[tarefas].length+')'
+// }
 
 function listar_tarefas(){
-    let conteudo = buscar().sort().map(function(tarefa){
+    let conteudo = buscar().map(function(tarefa){
         return`
         <div>
             <input type="checkbox"> 
@@ -17,7 +17,8 @@ function listar_tarefas(){
         </div>
         `
     })
-    document.getElementById('tarefas').innerHTML = conteudo.join('');
+    document.getElementById('tarefas').innerHTML = conteudo.sort().join('');
+    document.getElementById('numeros').innerHTML = '('+conteudo.length+')'
 }
 
 function add_tarefa(){
@@ -29,16 +30,11 @@ function add_tarefa(){
         alert('Tarefa invalida');
         return;
     }
-    else if(lista_tarefas.includes(titulo)){
-        alert('Tarefa já existente');
-        return;
-    }
-
+    
     salvar(titulo,prioridade);
 
     document.getElementById('input_nova_tarefa').value = '';
     
-    atualizar_qtd();
     listar_tarefas();
 }
 
