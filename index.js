@@ -1,7 +1,3 @@
-// function atualizar_qtd(){
-//     document.getElementById('numeros').innerHTML = '('+[tarefas].length+')'
-// }
-
 function listar_tarefas(){
     let conteudo = buscar().map(function(tarefa){
         return`
@@ -30,8 +26,27 @@ function add_tarefa(){
         alert('Tarefa invalida');
         return;
     }
+
+
+    //Variavel para buscar a string titulo dos objetos 
+    let titulos = buscar().map((tarefa) => {  
+        return tarefa ? tarefa.titulo : "";
+    });
+
+    //Metodo de verificação
+    let existe = false;
+    titulos.forEach((t) => {
+        if (true === t.includes(titulo)) {
+            existe = true;
+            return;
+        }
+    });
     
-    salvar(titulo,prioridade);
+    if(existe == false){
+        salvar(titulo, input_prioridade.value);
+    }else{
+        alert('Tarefa já existe');         
+    }
 
     document.getElementById('input_nova_tarefa').value = '';
     
